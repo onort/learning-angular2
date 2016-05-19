@@ -3,3 +3,7 @@
     [class.glyphicon-star]="isFavorite"
     (click)="onClick()">
 </i>
+<!-- daha iyi bir alternatif olarak 
+    [ngClass]="{'glyphicon-star-empty': !isFavorite,
+                'glyphicon-star': isFavorite }"
+-->
