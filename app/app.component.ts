@@ -5,6 +5,7 @@ import { FavoriteComponent } from './favorite.component';
 import { LikeComponent } from './like.component';
 import { VoteComponent } from './vote.component';
 import { SummaryPipe } from './summary.pipe';
+import { FormComponent } from './contact-form.component';
 
 @Component({
     selector: 'my-app',
@@ -13,8 +14,10 @@ import { SummaryPipe } from './summary.pipe';
     <like></like><hr />
     <p>{{post.longText | summary:10 }}</p>
     <voting [voteCount]="post.voteCount" [myVote]="post.myVote" 
-      (vote)="onVote($event)"></voting>`,
-    directives: [CoursesComponent, AuthorsComponent, FavoriteComponent, LikeComponent, VoteComponent],
+      (vote)="onVote($event)"></voting>
+      <hr />
+      <contact-form></contact-form>`,
+    directives: [CoursesComponent, AuthorsComponent, FavoriteComponent, LikeComponent, VoteComponent, FormComponent],
     pipes: [SummaryPipe]
 })
 export class AppComponent {

@@ -1,0 +1,43 @@
+<form #f="ngForm" (ngSubmit)="onSubmit(f.form)">
+  <div class="form-group">
+    <label for="firstName">First Name</label>
+    <input 
+      type="text" 
+      class="form-control" 
+      id="firstName" 
+      #firstName="ngForm" 
+      ngControl="firstName" 
+      required
+      minlength="3">
+      <div *ngIf="firstName.touched && firstName.errors"> 
+        <div class="alert alert-danger" *ngIf="firstName.errors.required">First name is required.</div>
+        <div class="alert alert-danger" *ngIf="firstName.errors.minlength">
+          Must be at least {{firstName.errors.minlength.requiredLength}} chars long.
+        </div>
+      </div>
+  </div>
+  <div class="form-group">
+    <label for="email">Email Address</label>
+    <input type="email" 
+           class="form-control"
+           id="email"
+           #email="ngForm"
+           ngControl="email"
+           required>
+    <div class="alert alert-danger" *ngIf="email.touched && email.errors.required">Email is required</div>
+  </div>
+  <div class="form-group">
+    <label for="comment">Comment</label>
+    <textarea 
+        #comment="ngForm"
+        id="comment" 
+        cols="30" 
+        rows="10" 
+        class="form-control" 
+        ngControl="comment"
+        required>
+        </textarea>
+        <div *ngIf="!comment.valid && firstName.touched" class="alert alert-danger">Comment is required</div>
+  </div>
+  <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
+</form>
