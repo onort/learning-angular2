@@ -1,43 +1,28 @@
-<form #f="ngForm" (ngSubmit)="onSubmit(f.form)">
+<form [ngFormModel]="form" (ngSubmit)="signup()">
   <div class="form-group">
-    <label for="firstName">First Name</label>
+    <label for="username">Username</label>
     <input 
       type="text" 
       class="form-control" 
-      id="firstName" 
-      #firstName="ngForm" 
-      ngControl="firstName" 
-      required
-      minlength="3">
-      <div *ngIf="firstName.touched && firstName.errors"> 
-        <div class="alert alert-danger" *ngIf="firstName.errors.required">First name is required.</div>
-        <div class="alert alert-danger" *ngIf="firstName.errors.minlength">
-          Must be at least {{firstName.errors.minlength.requiredLength}} chars long.
-        </div>
-      </div>
+      id="username" 
+      ngControl="username"
+      #username="ngForm">
+    <div *ngIf="username.control.pending">Checking for uniqueness...</div>  
+    <div *ngIf="username.touched && username.errors">
+      <div *ngIf="username.errors.required" class="alert alert-danger">Username is required.</div>
+      <div *ngIf="username.errors.cannotContainSpace" class="alert alert-danger">Username cannot contain space.</div>
+      <div *ngIf="username.errors.shouldBeUnique" class="alert alert-danger">This username already taken</div>
+    </div>
   </div>
   <div class="form-group">
-    <label for="email">Email Address</label>
-    <input type="email" 
+    <label for="password">Password</label>
+    <input type="password" 
            class="form-control"
-           id="email"
-           #email="ngForm"
-           ngControl="email"
-           required>
-    <div class="alert alert-danger" *ngIf="email.touched && email.errors.required">Email is required</div>
+           id="password"
+           ngControl="password"
+           #password="ngForm">
+    <div class="alert alert-danger" *ngIf="password.touched && !password.valid">Password is required</div>
   </div>
-  <div class="form-group">
-    <label for="comment">Comment</label>
-    <textarea 
-        #comment="ngForm"
-        id="comment" 
-        cols="30" 
-        rows="10" 
-        class="form-control" 
-        ngControl="comment"
-        required>
-        </textarea>
-        <div *ngIf="!comment.valid && firstName.touched" class="alert alert-danger">Comment is required</div>
-  </div>
-  <button class="btn btn-primary" type="submit" [disabled]="!f.valid">Submit</button>
+  
+  <button class="btn btn-primary" type="submit">Submit</button>
 </form>
