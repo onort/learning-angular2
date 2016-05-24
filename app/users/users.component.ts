@@ -6,7 +6,7 @@ import { UsersService } from './users.service';
 
 @Component({
   selector: 'users',
-  templateUrl: 'app/users.component.html',
+  templateUrl: 'app/users/users.component.html',
   directives: [RouterLink],
   providers: [UsersService]
 })
@@ -21,7 +21,7 @@ export class UsersComponent implements OnInit {
                       .subscribe(users => {
                         this.isLoading = false;
                         this.users = users;
-                      }
+                      });
   }
   
   deleteUser(user) {

@@ -4,11 +4,11 @@ import { CanDeactivate, Router, RouteParams } from 'angular2/router';
 
 import { User } from './user';
 import { UsersService } from './users.service'
-import { UserValidators } from './user.validators';
+import { UserValidators } from '../shared/user.validators';
 
 @Component({
   selector: 'add-user',
-  templateUrl: 'app/adduser.component.html',
+  templateUrl: 'app/users/adduser.component.html',
   providers: [UsersService]
 })
 export class AddUserComponent implements CanDeactivate, OnInit {
